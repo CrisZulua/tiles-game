@@ -1,16 +1,20 @@
 import { Droppable, Draggable } from "react-beautiful-dnd"
 import { Tile } from "./Tile"
 import '../Styles/listOfTiles.css'
+import { useEffect } from "react"
 export function ListOfTiles ({list, dId}){
     if(!list){
         list = []
     }
+    useEffect(() => {
+      console.log('Renderizado');
+    },[list])
     return(
         <Droppable droppableId={`tilesList-${dId}`}>
           {(provided) => (
             <ul className='tilesList' ref={provided.innerRef} {...provided.droppableProps}>
               {list.map((tile, index) => (
-                <Draggable key={index} index={tile.id} draggableId={`tile-${tile.id}`}>
+                <Draggable key={index} index={index} draggableId={`tile-${tile.randomId}`}>
                   {(provided) => (
                     <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                       <Tile tile={tile} />

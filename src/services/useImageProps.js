@@ -16,6 +16,7 @@ export const useImageProps = ({ imageURL }) => {
             for(let y = 0; y < NUM_OF_TILES; y++){
                 const piece = {
                     id: id++,
+                    randomId: 0,
                     width: tileWidth,
                     height: tileHeight,
                     backgroundImage: `url('${imageURL}')`,
