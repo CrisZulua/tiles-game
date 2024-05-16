@@ -15,7 +15,7 @@ export const useImageProps = ({ imageURL }) => {
         for(let x = 0; x < NUM_OF_TILES; x++){
             for(let y = 0; y < NUM_OF_TILES; y++){
                 const piece = {
-                    id: id++,
+                    id: `${id++}`,
                     randomId: 0,
                     width: tileWidth,
                     height: tileHeight,
