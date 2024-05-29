@@ -2,12 +2,19 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useEffect, useState } from 'react';
 import { Tile } from './Tile'
 import '../Styles/board.css'
-export function Board({tiles}){
+import '../Styles/listOfTiles.css'
+import { Winmodal } from './Winmodal';
+
+
+export function Board({ tiles, getNewImage }){
 
   const [lists, setLists] = useState([])
+  const [modal, setModal] = useState(false)
 
   useEffect(()=>{
-    setLists([tiles.slice(0, 4), tiles.slice(4, 8), tiles.slice(8, 12), tiles.slice(12, 16)])
+    const tilesClone = structuredClone(tiles)
+    tilesClone.sort((a, b) => 0.5 - Math.random())
+    setLists([tilesClone.slice(0, 4), tilesClone.slice(4, 8), tilesClone.slice(8, 12), tilesClone.slice(12, 16)])
   }, [tiles])
   
   const reorder = (list, startIndex, endIndex) => {
@@ -31,7 +38,18 @@ export function Board({tiles}){
   
     return result;
   };
-  
+
+  const checkCompletedBoard = (board) => {
+    console.log('comprobando');
+    let idOrder = 0;
+    for(let i = 0; i < 4; i++){
+      for(let j = 0; j < 4; j++){
+        if(board[i][j].id !== idOrder) return false;
+        idOrder++;
+      }
+    }
+    return true
+  }
   //Function to save changes when draggin has finished
   function onDragEnd( result ){
       const { source, destination } = result
@@ -47,39 +65,46 @@ export function Board({tiles}){
         const newLists = [...lists]
         newLists[sIndex] = items
         setLists(newLists)
+        setModal(checkCompletedBoard(newLists))
       } else {
         //If drag happened between lists
         const result = move(lists[sIndex], lists[dIndex], source, destination);
         const newLists = [...lists];
         newLists[sIndex] = result[sIndex];
         newLists[dIndex] = result[dIndex];
-  
         setLists(newLists.filter(group => group.length));
+        setModal(checkCompletedBoard(newLists))
       }
+
+      
   }
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className='board'>
-        {lists.map((list, index) => (
-          <Droppable key={index} droppableId={`${index}`}>
-            {(provided) => (
-              <ul className='tilesList' ref={provided.innerRef} {...provided.droppableProps}>
-                {list.map((tile, ind) => (
-                  <Draggable key={tile.id} draggableId={tile.id} index={ind}>
-                    {(provided) => (
-                      <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                        <Tile tile={tile} />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-        ))}            
-      </div>
-    </DragDropContext>
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className='board'>
+          {lists.map((list, index) => (
+            <Droppable key={index} droppableId={`${index}`}>
+              {(provided) => (
+                <ul className='tilesList' ref={provided.innerRef} {...provided.droppableProps}>
+                  {list.map((tile, ind) => (
+                    <Draggable key={tile.id} draggableId={`${tile.id}`} index={ind}>
+                      {(provided) => (
+                        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                          <Tile tile={tile} />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          ))}    
+          <Winmodal modal={modal} setModal={setModal} getNewImage={getNewImage} />
+        </div>
+      </DragDropContext>
+      
+    </>
   )
 }

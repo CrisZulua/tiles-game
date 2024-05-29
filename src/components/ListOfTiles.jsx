@@ -1,14 +1,12 @@
 import { Droppable, Draggable } from "react-beautiful-dnd"
 import { Tile } from "./Tile"
 import '../Styles/listOfTiles.css'
-import { useEffect } from "react"
+
 export function ListOfTiles ({list, dId}){
     if(!list){
         list = []
     }
-    useEffect(() => {
-      console.log('Renderizado');
-    },[list])
+  
     return(
         <Droppable droppableId={`tilesList-${dId}`}>
           {(provided) => (
