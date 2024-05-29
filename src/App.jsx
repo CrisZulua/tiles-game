@@ -15,7 +15,7 @@ function App() {
     <>
       <SideBar imageURL={imageURL} getNewImage={getNewImage} />
       <section className='boardSection'>
-        <Board tiles={tiles} />
+        <Board tiles={tiles} getNewImage={getNewImage} />
       </section>
     </>
   )

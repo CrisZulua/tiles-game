@@ -1,11 +1,52 @@
 .boardSection{
-    height: 100%;
     width: 100%;
 }
 
 .board{
-    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
+    overflow:hidden;
+    animation: fade .3s ease-in;
+}
+
+.winModal {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.258);
+    position: relative;
+}
+
+.winner {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+    .winner .text {
+    background: #111;
+    height: 300px;
+    width: 320px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(2%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
 }
