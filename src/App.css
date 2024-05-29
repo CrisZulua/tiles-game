@@ -6,12 +6,24 @@
   display: flex;
   flex-direction: row;
   gap: 3em;
-  align-items: flex-start;
+  align-items: center;
+}
+
+@keyframes fade {
+  from {
+      opacity: 0;
+      transform: translateY(2%);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0%);
+  }
 }
 
 #refImg{
   max-width: 500px;
   max-height: 500px;
+  animation: fade .3s ease-in;
 }
 
 
