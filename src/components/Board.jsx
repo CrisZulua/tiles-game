@@ -40,7 +40,6 @@ export function Board({ tiles, getNewImage }){
   };
 
   const checkCompletedBoard = (board) => {
-    console.log('comprobando');
     let idOrder = 0;
     for(let i = 0; i < 4; i++){
       for(let j = 0; j < 4; j++){

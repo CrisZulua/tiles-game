@@ -1,9 +1,12 @@
+import  confetti  from 'canvas-confetti'
+
 export function Winmodal ({ modal, setModal, getNewImage }) {
   const resetGame = () => {
     getNewImage()
     setModal(false)
   }
   if ( !modal ) return
+  confetti()
   return (
     <section className="winner">
       <div className="text">
