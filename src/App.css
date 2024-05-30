@@ -9,6 +9,8 @@
   align-items: center;
 }
 
+
+
 @keyframes fade {
   from {
       opacity: 0;
@@ -20,13 +22,28 @@
   }
 }
 
+
 #refImg{
   max-width: 500px;
   max-height: 500px;
+  border-radius: 4px;
   animation: fade .3s ease-in;
+  box-shadow: 33px 29px 35px -4px rgba(0,0,0,0.75);
+  transition: scale .2s;
 }
 
+.sideBar img:hover {
+  scale: 130%;
+}
 
+p {
+  font-size: large;
+  font-weight: 700;
+}
+
+h1 {
+  text-shadow: 0px 0px 15px rgba(149, 145, 145, 0.75);
+}
 
 
 
