@@ -1,8 +1,7 @@
-# React + Vite
+# TILES GAME
+<img src="https://github.com/CrisZulua/tiles-game/assets/160841290/f28438ae-756c-4b17-bb2a-5b1136f3f690" width="500"/>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The objective of the game is to arrange the tiles in order to look as the reference image (random cat image).
 
-Currently, two official plugins are available:
+The site is build with React, JS, CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
